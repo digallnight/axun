@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--配置参考地址：http://www.mybatis.org/generator/configreference/xmlconfig.html-->
+    <!--配置参考地址http://blog.csdn.net/pk490525/article/details/16819307-->
+    <!--配置参考：http://blog.csdn.net/lirui874125/article/details/49589563-->
+    <!--配置参考：http://www.jianshu.com/p/e09d2370b796-->
+
+    <!-- 引入配置文件 -->
+    <!--<properties resource="init.properties"/>-->
+    <!-- 指定数据连接驱动jar地址 -->
+    <!-- <classPathEntry location="/Program Files/IBM/SQLLIB/java/db2java.zip" />-->
+
+    <!--
+    context:生成一组对象的环境
+    id:必选，上下文id，用于在生成错误时提示
+    defaultModelType:指定生成对象的样式
+        1，conditional：类似hierarchical；
+        2，flat：所有内容（主键，blob）等全部生成在一个对象中；
+        3，hierarchical：主键生成一个XXKey对象(key class)，Blob等单独生成一个对象，其他简单属性在一个对象中(record class)
+    targetRuntime:
+        1，MyBatis3：默认的值，生成基于MyBatis3.x以上版本的内容，包括XXXBySample；
+        2，MyBatis3Simple：类似MyBatis3，只是不生成XXXBySample；
+    introspectedColumnImpl：类全限定名，用于扩展MBG
+    -->
+
+    <properties resource="application.yml"/>
+    <!-- mysql驱动的位置 -->
+    <classPathEntry
+            location="C:\Users\xxiao\.m2\repository\mysql\mysql-connector-java\5.1.46\mysql-connector-java-5.1.46.jar"/>
+
+    <context id="Tables" targetRuntime="MyBatis3">
+
+        <!--https://mapperhelper.github.io/docs/3.usembg/，自动生成代码的通用mapper插件-->
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
+            <!-- caseSensitive默认false，当数据库表名区分大小写时，可以将该属性设置为true -->
+            <!-- <property name="caseSensitive" value="true"/>-->
+        </plugin>
+
+        <!-- 注释 -->
+        <commentGenerator>
+            <!-- 是否生成注释代时间戳 -->
+            <property name="suppressDate" value="true"/>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!-- JDBC连接 -->
+        <jdbcConnection
+                driverClass="com.mysql.jdbc.Driver"
+                connectionURL="jdbc:mysql://localhost:3306/lqp"
+                userId="root"
+                password="6yhn7ujm">
+        </jdbcConnection>
+
+        <!-- 非必需，类型处理器，在数据库类型和java类型之间的转换控制-->
+        <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
+         NUMERIC 类型解析为java.math.BigDecimal -->
+        <javaTypeResolver>
+            <!-- 是否使用bigDecimal， false可自动转化以下类型（Long, Integer, Short, etc.） -->
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- 生成实体类地址 -->
+        <javaModelGenerator targetPackage="com.lqp.axun.model" targetProject="src/main/java">
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property name="trimStrings" value="true"/>
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+        </javaModelGenerator>
+
+        <!-- 生成mapper xml文件 -->
+        <sqlMapGenerator targetPackage="com.lqp.axun.mapper" targetProject="src/main/java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+
+        <!-- 生成mapper xml对应Client-->
+        <javaClientGenerator targetPackage="com.lqp.axun.mapper" targetProject="src/main/java" type="XMLMAPPER">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+
+        <!-- 配置表信息 -->
+        <!-- schema即为数据库名 tableName为对应的数据库表 domainObjectName是要生成的实体类 enable*ByExample
+            是否生成 example类 -->
+        <!--<table schema="lqp" tableName="axun_user_info"-->
+        <!--domainObjectName="AxunUserInfo" enableCountByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--enableUpdateByExample="false">-->
+        <!--<property name="useActualColumnNames" value="true"/>-->
+        <!--</table>-->
+        <table schema="lqp" tableName="axun_%"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               enableUpdateByExample="false">
+        </table>
+    </context>
+</generatorConfiguration>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lqp.axun.mapper.AxunDiaryMapper">
+  <resultMap id="BaseResultMap" type="com.lqp.axun.model.AxunDiary">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="diary_id" jdbcType="VARCHAR" property="diaryId" />
+    <result column="diary_title" jdbcType="VARCHAR" property="diaryTitle" />
+    <result column="crt_user_id" jdbcType="VARCHAR" property="crtUserId" />
+    <result column="crt_time" jdbcType="TIMESTAMP" property="crtTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    diary_id, diary_title, crt_user_id, crt_time
+  </sql>
+</mapper>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- 基本信息 -->
+    <description>web模块</description>
+    <name>axun-web</name>
+    <artifactId>axun-web</artifactId>
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>jar</packaging>
+
+    <!-- 继承本项目的父工程 -->
+    <parent>
+        <artifactId>axun</artifactId>
+        <groupId>com.lqp</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <!-- 依赖 -->
+    <dependencies>
+        <!-- 模块依赖 -->
+        <dependency>
+            <groupId>com.lqp</groupId>
+            <artifactId>axun-base</artifactId>
+        </dependency>
+        <!-- spring boot -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
