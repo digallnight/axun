@@ -32,6 +32,7 @@
         <module>axun-service-api</module><!-- 业务层，项目对外暴露接口模块 -->
         <module>axun-service-impl</module><!-- 业务层，项目对外暴露接口实现模块，依赖axun-repo、axun-common-impl、axun-base模块 -->
         <module>axun-web</module><!-- 控制层，视图层，web模块，依赖axun-service-impl、axun-base模块 -->
+        <module>axun-docs</module><!-- 相关文档管理模块 -->
     </modules>
 
     <!-- 本项目使用参数统一声明 -->
