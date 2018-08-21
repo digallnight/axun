@@ -4,13 +4,19 @@
 
     <!-- 基本信息 -->
     <description>不得不相信缘分原来真的玄之又玄</description>
+    <!--项目的名称, Maven产生的文档用 -->
     <name>axun</name>
+    <!-- 模型版本。maven2.0必须是这样写，现在是maven2唯一支持的版本 -->
     <modelVersion>4.0.0</modelVersion>
+    <!-- 打包的机制，如pom,jar, maven-plugin, ejb, war, ear, rar, par，默认为jar -->
     <packaging>pom</packaging>
 
     <!-- 项目说明：这里作为聚合工程的父工程 -->
+    <!-- 公司或者组织的唯一标志，并且配置时生成的路径也是由此生成， 如com.winner.trade，maven会将该项目打成的jar包放本地路径：/com/winner/trade -->
     <groupId>com.lqp</groupId>
+    <!-- 本项目的唯一ID，一个groupId下面可能多个项目，就是靠artifactId来区分的 -->
     <artifactId>axun</artifactId>
+    <!-- 本项目目前所处的版本号 -->
     <version>0.0.1-SNAPSHOT</version>
 
     <!-- 继承说明：这里继承SpringBoot提供的父工程 -->
@@ -23,8 +29,7 @@
 
     <!-- 模块说明：这里声明多个子模块 -->
     <modules>
-        <module>axun-base</module><!-- 基础模块 -->
-        <module>axun-util</module><!-- 公共函数模块 -->
+        <module>axun-base</module><!-- 基础模块，不依赖任何模块 -->
         <module>axun-repo</module><!-- 数据层，数据库模块，依赖axun-base模块 -->
         <module>axun-common-api</module><!-- 项目内接口模块 -->
         <module>axun-common-impl</module><!-- 项目内接口实现模块，依赖axun-repo、axun-common-api、axun-base模块 -->
@@ -32,11 +37,17 @@
         <module>axun-service-api</module><!-- 业务层，项目对外暴露接口模块 -->
         <module>axun-service-impl</module><!-- 业务层，项目对外暴露接口实现模块，依赖axun-repo、axun-common-impl、axun-base模块 -->
         <module>axun-web</module><!-- 控制层，视图层，web模块，依赖axun-service-impl、axun-base模块 -->
-        <module>axun-docs</module><!-- 相关文档管理模块 -->
+        <module>axun-docs</module><!-- 相关文档管理模块，不依赖任何模块 -->
     </modules>
 
     <!-- 本项目使用参数统一声明 -->
+    <!-- 文件拷贝时的编码 -->
+    <!-- 可以在后文用${}取出便于全局控制,在很多情况下版本要统一如Spring -->
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+
         <!-- 子模块版本号 -->
         <axun-base-version>0.0.1-SNAPSHOT</axun-base-version>
         <axun-util-version>0.0.1-SNAPSHOT</axun-util-version>
@@ -58,22 +69,59 @@
         <druid-version>1.1.9</druid-version>
         <junit-version>4.10</junit-version>
 
+        <lqp-common-base-version>1.0-SNAPSHOT</lqp-common-base-version>
+
         <!-- 第三方插件版本号 -->
+        <maven-surefire-plugin-version>2.21.0</maven-surefire-plugin-version>
         <mybatis-generator-maven-plugin-version>1.3.5</mybatis-generator-maven-plugin-version>
     </properties>
 
     <!-- 版本说明：这里统一管理依赖的版本号 -->
+    <!-- 必选依赖 -->
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!-- Lombok-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok-version}</version>
+            <optional>true</optional>
+        </dependency>
+        <!-- junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit-version}</version>
+            <!-- 项目如果要使用某个框架或依赖，需要把相关jar包引用到classpath中，maven项目提供了三个classpath：编译、测试、运行 -->
+            <!-- 依赖的范围用于控制依赖于三种classpath关系的，包括：compile、provided、runtime、test、system、import -->
+            <!--
+              compile:默认范围，编译、测试、运行都有效
+              provided:编译和测试有效，最后运行不会被加入
+              runtime:在测试和运行的时候有效，编译不会被加入，比如jdbc驱动jar
+              test:测试阶段有效，比如junit
+              system:与provided一致，编译和测试阶段有效，但与系统关联，可移植性差
+              import:导入的范围，它只是用在dependencyManagement中，表示从其它的pom中导入dependency的配置
+             -->
+            <!-- 表示当前依赖只能在测试代码中引用使用，在主代码中引用使用则报错 -->
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.lqp</groupId>
+            <artifactId>lqp-common-base</artifactId>
+            <version>${lqp-common-base-version}</version>
+        </dependency>
+    </dependencies>
+
+    <!-- 可选依赖 -->
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>com.lqp</groupId>
                 <artifactId>axun-base</artifactId>
                 <version>${axun-base-version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.lqp</groupId>
-                <artifactId>axun-util</artifactId>
-                <version>${axun-util-version}</version>
             </dependency>
             <dependency>
                 <groupId>com.lqp</groupId>
@@ -146,27 +194,40 @@
                 <version>${mysql-connector.version}</version>
                 <scope>runtime</scope>
             </dependency>
-            <!-- Lombok-->
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombok-version}</version>
-                <optional>true</optional>
-            </dependency>
             <!-- druid -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid</artifactId>
                 <version>${druid-version}</version>
             </dependency>
-            <!-- junit -->
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>${junit-version}</version>
-                <scope>test</scope>
-            </dependency>
 
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <!--指定使用maven打包-->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin-version}</version>
+                <configuration>
+                    <skipTests>true</skipTests>    <!--默认关掉单元测试 -->
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

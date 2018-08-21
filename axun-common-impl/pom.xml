@@ -32,9 +32,5 @@
             <groupId>com.lqp</groupId>
             <artifactId>axun-repo</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.lqp</groupId>
-            <artifactId>axun-util</artifactId>
-        </dependency>
     </dependencies>
 </project>

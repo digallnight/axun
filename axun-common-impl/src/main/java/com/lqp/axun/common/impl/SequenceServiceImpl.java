@@ -1,7 +1,7 @@
 package com.lqp.axun.common.impl;
 
 import com.lqp.axun.common.api.SequenceService;
-import com.lqp.axun.util.seq.IdWorker;
+import com.lqp.common.base.util.snowflake.IdWorker;
 
 public class SequenceServiceImpl implements SequenceService {
     @Override

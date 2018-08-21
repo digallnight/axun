@@ -1,7 +1,7 @@
 package com.lqp.axun.base.bean;
 
-import com.lqp.axun.util.DateUtil;
-import com.lqp.axun.util.StringUtil;
+import com.lqp.common.base.util.DateUtil;
+import com.lqp.common.base.util.StringUtil;
 
 public class PgOutHeader {
     private String responseTime;
