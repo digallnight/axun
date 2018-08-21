@@ -5,6 +5,10 @@ import java.util.Map;
 
 /**
  * 正则表达式定义
+ *
+ * @Auther: xxiao
+ * @Date: 2018/8/21 23:42
+ * @Description:
  */
 public enum EnumRegx {
     CHECK_INT("^-?\\d+$", "校验是整数"),
