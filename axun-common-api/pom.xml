@@ -16,4 +16,11 @@
         <groupId>com.lqp</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.lqp</groupId>
+            <artifactId>axun-base</artifactId>
+        </dependency>
+    </dependencies>
 </project>
