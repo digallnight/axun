@@ -1,25 +1,15 @@
-/target/
-!.mvn/wrapper/maven-wrapper.jar
-
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
 ### IntelliJ IDEA ###
 .idea
 *.iws
 *.iml
 *.ipr
 
-### NetBeans ###
-/nbproject/private/
-/build/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
+axun-base/target/
+axun-common-api/target/
+axun-common-impl/target/
+axun-docs/target/
+axun-job/target/
+axun-repo/target/
+axun-service-api/target/
+axun-service-impl/target/
+axun-web/target/

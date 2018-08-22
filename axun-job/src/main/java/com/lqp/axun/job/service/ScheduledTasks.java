@@ -13,10 +13,10 @@ import java.util.Date;
 @Component
 public class ScheduledTasks {
 
-    @Scheduled(fixedRate = 100)
-    public void reportCurrentTime() {
-        System.out.println("Scheduling Tasks Examples: The time is now " + dateFormat().format(new Date()));
-    }
+//    @Scheduled(fixedRate = 100)
+//    public void reportCurrentTime() {
+//        System.out.println("Scheduling Tasks Examples: The time is now " + dateFormat().format(new Date()));
+//    }
 
     /**
      * cronExpression的配置说明
