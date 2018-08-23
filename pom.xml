@@ -61,7 +61,7 @@
         <lqp-common-base-version>1.0-SNAPSHOT</lqp-common-base-version>
         <!-- 其他第三方依赖版本号 -->
         <spring-boot-version>2.0.4.RELEASE</spring-boot-version>
-        <mysql-connector-java-version>5.1.45</mysql-connector-java-version>
+        <mysql-connector-java-version>6.0.6</mysql-connector-java-version>
         <quartz-version>2.2.1</quartz-version>
         <spring-context-version>5.0.8.RELEASE</spring-context-version>
     </properties>
@@ -162,6 +162,12 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-web</artifactId>
                 <version>${spring-boot-version}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>log4j-over-slf4j</artifactId>
+                        <groupId>org.slf4j</groupId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -177,6 +183,21 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-devtools-</artifactId>
                 <version>${spring-boot-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-jpa</artifactId>
+                <version>${spring-boot-version}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>slf4j-api</artifactId>
+                        <groupId>org.slf4j</groupId>
+                    </exclusion>
+                    <exclusion>
+                        <artifactId>jboss-logging</artifactId>
+                        <groupId>org.jboss.logging</groupId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
             <!-- mybatis-->
@@ -212,7 +233,7 @@
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql-connector-java-version}</version>
-                <scope>runtime</scope>
+                <!--<scope>runtime</scope> 不能加这个，不然编译不通过，yml无法读取驱动-->
             </dependency>
 
             <!-- druid -->

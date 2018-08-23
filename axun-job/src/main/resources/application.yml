@@ -1,6 +1,6 @@
 # Tomcatport
 server:
-  port: 18080
+  port: 8080
 spring:
   #Spring Batch
   batch:
@@ -27,4 +27,6 @@ spring:
 # log config
 logging:
   config: file:./src/main/resources/log.xml
+
+
 
