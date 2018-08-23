@@ -2,21 +2,25 @@ package com.lqp.axun.job.service;
 /**
  * 简单的spirng定时任务示例
  */
+
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-//@EnableScheduling：标注启动定时任务。
-//@Scheduled(fixedRate = 1000 * 30)  定义某个定时任务。
 @Component
 public class ScheduledTasks {
 
-//    @Scheduled(fixedRate = 100)
-//    public void reportCurrentTime() {
-//        System.out.println("Scheduling Tasks Examples: The time is now " + dateFormat().format(new Date()));
-//    }
+    //每1分钟执行一次
+    @Scheduled(cron = "0 */1 *  * * * ") //@Scheduled(fixedRate = 1000 * 30)  定义某个定时任务。
+    public void reportCurrentByCron() {
+        System.out.println("Scheduling Tasks Examples By Cron: The time is now " + dateFormat().format(new Date()));
+    }
+
+    private SimpleDateFormat dateFormat() {
+        return new SimpleDateFormat("HH:mm:ss");
+    }
 
     /**
      * cronExpression的配置说明
@@ -46,14 +50,4 @@ public class ScheduledTasks {
      * "0 10,44 14 ? 3 WED"    三月的每周三的14：10和14：44触发
      * "0 15 10 ? * MON-FRI"    每个周一、周二、周三、周四、周五的10：15触发
      */
-    //每1分钟执行一次
-    @Scheduled(cron = "0 */1 *  * * * ")
-    public void reportCurrentByCron() {
-        System.out.println("Scheduling Tasks Examples By Cron: The time is now " + dateFormat().format(new Date()));
-    }
-
-    private SimpleDateFormat dateFormat() {
-        return new SimpleDateFormat("HH:mm:ss");
-    }
-
 }
