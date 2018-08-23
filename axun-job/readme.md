@@ -1,0 +1,5 @@
+本工程是由maven构建，
+使用SpringBoot简化复杂的依赖配置及部署，
+使用Quartz作为任务调度框架，
+SpringBatch作为批处理框架，
+数据持久化使用JPA
