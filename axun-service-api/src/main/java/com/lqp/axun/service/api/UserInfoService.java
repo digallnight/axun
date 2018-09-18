@@ -2,10 +2,10 @@ package com.lqp.axun.service.api;
 
 import com.lqp.axun.service.in.UserInfoGetIn;
 import com.lqp.axun.service.in.UserInfoInsertIn;
-import com.lqp.axun.service.out.UserInfo;
+import com.lqp.axun.service.bean.UserInfo;
 import com.lqp.axun.service.out.UserInfoGetOut;
 import com.lqp.axun.service.out.UserInfoInsertOut;
-import com.lqp.axun.service.out.UserInfoList;
+import com.lqp.axun.service.bean.UserInfoList;
 
 public interface UserInfoService {
 
